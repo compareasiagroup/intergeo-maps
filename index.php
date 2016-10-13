@@ -24,39 +24,7 @@ defined( 'WPLANG' ) || define( 'WPLANG', '' );
 if ( class_exists( 'IntergeoMaps_Pro', false ) ) {
 	define( 'IntergeoMaps_Pro', true );
 }
-// Added by Ash/Upwork
-// </editor-fold>
-// <editor-fold defaultstate="collapsed" desc="plugin init">
-function im_fs() {
-	global $im_fs;
-	if ( ! isset( $im_fs ) ) {
-		// Include Freemius SDK.
-		require_once dirname( __FILE__ ) . '/freemius/start.php';
-		$im_fs = fs_dynamic_init( array(
-			'id'             => '239',
-			'slug'           => 'intergeo-maps',
-			'public_key'     => 'pk_35c86b731f06c8d4ba25b490af632',
-			'is_premium'     => false,
-			'has_addons'     => false,
-			'has_paid_plans' => false,
-			'anonymous_mode' => true,
-			'menu'           => array(
-				'slug'    => 'intergeo',
-				'account' => false,
-				'support' => false,
-				'contact' => false,
-				'parent'  => array(
-					'slug' => 'upload.php',
-				),
-			),
-		) );
-	}
 
-	return $im_fs;
-}
-
-// Init Freemius.
-im_fs();
 add_filter( 'plugin_action_links', 'intergeo_action_links', 10, 2 );
 function intergeo_action_links( $links, $file ) {
 	if ( $file == plugin_basename( __FILE__ ) ) {
